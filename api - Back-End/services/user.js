@@ -16,22 +16,26 @@ module.exports = {
     },
 
     followersCount: function (id, callback) {
-        return db.query('SELECT COUNT(*) FROM USER_HAS_FRIEND WHERE USER_FRIEND_ID=?', id, callback);
+        return db.query('SELECT COUNT(*) AS followers FROM USER_HAS_FRIEND WHERE USER_FRIEND_ID=?', id, callback);
     },
 
     followingCount: function (id, callback) {
-        return db.query('SELECT COUNT(*) FROM USER_HAS_FRIEND WHERE USER_ID=?', id, callback);
+        return db.query('SELECT COUNT(*) AS following FROM USER_HAS_FRIEND WHERE USER_ID=?', id, callback);
     },
 
     addUser: function (user, callback) {
         return db.query('INSERT INTO USER SET ?', [user], callback);
     },
 
-    addFollow: function (follow) {
+    addFollow: function (follow, callback) {
         return db.query('INSERT INTO USER_HAS_FRIEND SET ?', [follow], callback);
     },
 
-    removeFollow: function (idUser, idFollow) {
-        return db.query('DELETE FROM USER_HAS_FRIEND WHERE USER_ID=? AND USER_FRIEND_ID=?', idUser, idFollow, callback);
+    findFollow: function (idUser, idFollow, callback) {
+        return db.query('SELECT * FROM USER_HAS_FRIEND WHERE USER_ID=? AND USER_FRIEND_ID=?', [idUser, idFollow], callback);
+    },
+
+    removeFollow: function (idUser, idFollow, callback) {
+        return db.query('DELETE FROM USER_HAS_FRIEND WHERE USER_ID=? AND USER_FRIEND_ID=?', [idUser, idFollow], callback);
     }
 };
