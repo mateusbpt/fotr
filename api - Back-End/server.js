@@ -10,7 +10,7 @@ var utils = require('./utils/security-utils');
 //JSON POST Configuration
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: false
 }));
 
 //Services
@@ -136,10 +136,15 @@ routes.post('/removeFollow', function (req, res) {
         "user_id": req.body.user_id,
         "user_friend_id": req.body.user_friend_id
     };
-    user.removeFollow(data.user_id, data.user_friend_id, function (err) {
+    user.removeFollow(data.user_id, data.user_friend_id, function (err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
+            });
+        }
+        if (rows.length === 0) {
+            return res.status(202).json({
+                "message": "Você não segue esse usuário"
             });
         }
         return res.status(200).json({
