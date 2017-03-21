@@ -3,8 +3,10 @@ var db = require('../database/mysql-connection').connection();
 
 module.exports = {
 
-    getCharacterById: function(id, callback) {
+    getCharacterById: function (id, callback) {
         return db.query('SELECT * FROM `CHARACTER` WHERE ID=?', id, callback);
+    },
+    getAll: function (callback) {
+        return db.query('SELECT * FROM `CHARACTER`', [], callback);
     }
-
 };

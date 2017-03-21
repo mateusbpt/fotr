@@ -3,8 +3,12 @@ var db = require('../database/mysql-connection').connection();
 
 module.exports = {
 
-    getMovieById: function(id, callback) {
+    getMovieById: function (id, callback) {
         return db.query('SELECT * FROM MOVIE WHERE ID=?', id, callback);
+    },
+
+    getAll: function (callback) {
+        return db.query('SELECT * FROM MOVIE', [], callback);
     }
 
 };

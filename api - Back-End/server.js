@@ -21,7 +21,7 @@ var publication = require('./services/publication');
 var user = require('./services/user');
 
 //Character Routes
-routes.get('/character/:id?', function (req, res) {
+routes.get('/characters/:id?', function (req, res) {
     character.getCharacterById(req.params.id, function (err, rows) {
         if (err) {
             return res.status(500).json({
@@ -33,8 +33,26 @@ routes.get('/character/:id?', function (req, res) {
     });
 });
 
+routes.get('/characters', function (req, res) {
+    character.getAll(function (err, rows) {
+        if (err) {
+            return res.status(500).json({
+                "message": "Error"
+            });
+        } else {
+            return res.status(200).json(rows);
+        }
+    });
+});
+
+//Movie Routes
+
+//Profile Routes
+
+//Publication Routes
+
 //User Routes
-routes.get('/user/:id', function (req, res) {
+routes.get('/users/:id', function (req, res) {
     user.getUserById(req.params.id, function (err, rows) {
         if (err) {
             return res.status(500).json({
@@ -106,6 +124,40 @@ routes.post('/signin', function (req, res) {
                 });
 
         }
+    });
+});
+
+routes.post('/edit/:id', function (req, res) {
+    user.getUserById(req.params.id, function (err, rows) {
+        if (err) {
+            return res.status(500).json({
+                "message": "Error"
+            })
+        }
+        if (rows.length === 0) {
+            return res.status(202).json({
+                "message": "Usuário não encontrado"
+            })
+        }
+        var password = utils.encryptPassword(utils.generatePassword(rows[0].email, req.body.password));
+        var data = {
+            "username": req.body.username,
+            "password": password,
+            "profile_id": req.body.profile_id
+        }
+
+        console.log(data);
+        user.editProfile(data, req.params.id, function (err) {
+            if (err) {
+                return res.status(500).json({
+                    "message": "Error"
+                })
+            }
+            return res.status(200).json({
+                "message": "Cadastro editado com sucesso"
+            })
+        });
+
     });
 });
 
