@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="dist/images/lotr.ico" type="favicon/ico" />
+    <title>FOTR - Face Of The Rings</title>
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="dist/styles/main.css">
+</head>
+
+<body ng-app="fotr">
+    <div ui-view="navbar">
+    </div>
+    <div ui-view="content" class="container">
+    </div>
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/tether/dist/js/tether.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- endbower -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/indexController.js"></script>
+</body>
+
+</html>

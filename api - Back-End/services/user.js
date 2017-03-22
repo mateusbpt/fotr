@@ -40,6 +40,6 @@ module.exports = {
     },
 
     editProfile: function (user, id, callback) {
-        return db.query('UPDATE USER SET USERNAME=?, PASSWORD=?, PROFILE_ID=? WHERE ID=?', [user.username, user.password, user.profile_id, id], callback);
+        return db.query('UPDATE USER SET USERNAME=?, PASSWORD=?, PROFILE_ID=? WHERE ID=?', [user.username, id], callback);
     }
 };

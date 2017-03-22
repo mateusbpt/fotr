@@ -7,3 +7,6 @@ build/
 **/bower_components/**
 **/node_modules/**
 **/node/**
+
+**/dist/**
+**/fonts/**

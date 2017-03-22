@@ -205,7 +205,7 @@ routes.post('/removeFollow', function (req, res) {
     });
 });
 
-routes.post('/follow', function (req, res) {
+routes.post('/addfollow', function (req, res) {
     var data = {
         "user_id": req.body.user_id,
         "user_friend_id": req.body.user_friend_id
