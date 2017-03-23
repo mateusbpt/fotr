@@ -59,7 +59,7 @@ routes.get('/users/:id', function (req, res) {
                 "message": "Error"
             });
         }
-        return res.status(200).json(rows);
+        return res.status(200).json(rows[0]);
     });
 });
 
@@ -111,16 +111,17 @@ routes.post('/signin', function (req, res) {
         }
         if (rows.length === 0) {
             return res.status(202).json({
-                "message": "Usuário não encontrado, verifique"
+                "encontrado": false
             });
         } else {
             var password = utils.encryptPassword(utils.generatePassword(data.email, data.password));
             return utils.comparePassword(rows[0].password, password) ?
                 res.status(200).json({
-                    "message": "Logado com sucesso"
+                    "logado": true,
+                    "id": rows[0].id
                 }) :
                 res.status(202).json({
-                    "message": "Usuário ou senha incorretos"
+                    "logado": false
                 });
 
         }
