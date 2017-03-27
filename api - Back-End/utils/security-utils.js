@@ -7,15 +7,15 @@ var salt = 'fotr';
 
 
 module.exports = {
-    comparePassword: function (passwordOne, passwordTwo) {
+    comparePassword: function(passwordOne, passwordTwo) {
         return passwordOne === passwordTwo ? true : false;
     },
 
-    generatePassword: function (email, password) {
-        return email + salt + password;
-    },
+    //   generatePassword: function (email, password) {
+    //     return email + salt + password;
+    //  },
 
-    encryptPassword: function (password) {
+    encryptPassword: function(password) {
         return md5(password);
     }
 };

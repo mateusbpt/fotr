@@ -2,11 +2,11 @@
 var mysql = require('mysql');
 
 module.exports = {
-    connection: function () {
+    connection: function() {
         return mysql.createPool({
             host: 'localhost',
             user: 'root',
-            password: 'admin',
+            password: 'root',
             database: 'fotr_database'
         });
     }

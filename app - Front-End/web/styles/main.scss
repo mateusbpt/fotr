@@ -1,8 +1,23 @@
 @import "../bower_components/bootstrap/scss/bootstrap.scss";
 @import "../bower_components/font-awesome/scss/font-awesome.scss";
-@import url('https://fonts.googleapis.com/css?family=Jim+Nightshade');
-.font-lotr {
-    font-family: 'Jim Nightshade', cursive;
-    font-size: 80px;
-    color: #D0A94C;
+header {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    background-position: center;
+    background-image: url('../images/bakground2.jpg');
+    text-align: center;
+    color: whitesmoke;
+}
+
+.header-content {
+    position: relative;
+    text-align: center;
+    padding: 100px 15px 100px;
+    width: 100%;
+    background-size: cover;
+}
+
+.image-logo {
+    width: 70%;
 }

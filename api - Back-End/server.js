@@ -21,8 +21,8 @@ var publication = require('./services/publication');
 var user = require('./services/user');
 
 //Character Routes
-routes.get('/characters/:id?', function (req, res) {
-    character.getCharacterById(req.params.id, function (err, rows) {
+routes.get('/characters/:id?', function(req, res) {
+    character.getCharacterById(req.params.id, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -33,8 +33,8 @@ routes.get('/characters/:id?', function (req, res) {
     });
 });
 
-routes.get('/characters', function (req, res) {
-    character.getAll(function (err, rows) {
+routes.get('/characters', function(req, res) {
+    character.getAll(function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -52,8 +52,8 @@ routes.get('/characters', function (req, res) {
 //Publication Routes
 
 //User Routes
-routes.get('/users/:id', function (req, res) {
-    user.getUserById(req.params.id, function (err, rows) {
+routes.get('/users/:id', function(req, res) {
+    user.getUserById(req.params.id, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -63,16 +63,16 @@ routes.get('/users/:id', function (req, res) {
     });
 });
 
-routes.post('/signup', function (req, res) {
+routes.post('/signup', function(req, res) {
     var data;
-    user.getUserByEmail(req.body.email, function (err, rows) {
+    user.getUserByEmail(req.body.email, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
             });
         }
         if (rows.length === 0) {
-            var password = utils.encryptPassword(utils.generatePassword(req.body.email, req.body.password));
+            var password = utils.encryptPassword(req.body.password); //utils.generatePassword(req.body.email, req.body.password));
             data = {
                 "username": req.body.username,
                 "email": req.body.email,
@@ -85,7 +85,7 @@ routes.post('/signup', function (req, res) {
             });
         }
         console.log(data);
-        user.addUser(data, function (err) {
+        user.addUser(data, function(err) {
             if (err) {
                 return res.status(500).json({
                     "message": "Error"
@@ -98,12 +98,12 @@ routes.post('/signup', function (req, res) {
     });
 });
 
-routes.post('/signin', function (req, res) {
+routes.post('/signin', function(req, res) {
     var data = {
         "email": req.body.email,
         "password": req.body.password
     }
-    user.getUserByEmail(data.email, function (err, rows) {
+    user.getUserByEmail(data.email, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -114,7 +114,7 @@ routes.post('/signin', function (req, res) {
                 "encontrado": false
             });
         } else {
-            var password = utils.encryptPassword(utils.generatePassword(data.email, data.password));
+            var password = utils.encryptPassword(data.password); //utils.generatePassword(data.email, data.password));
             return utils.comparePassword(rows[0].password, password) ?
                 res.status(200).json({
                     "logado": true,
@@ -128,8 +128,8 @@ routes.post('/signin', function (req, res) {
     });
 });
 
-routes.post('/edit/:id', function (req, res) {
-    user.getUserById(req.params.id, function (err, rows) {
+routes.post('/edit/:id', function(req, res) {
+    user.getUserById(req.params.id, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -148,7 +148,7 @@ routes.post('/edit/:id', function (req, res) {
         }
 
         console.log(data);
-        user.editProfile(data, req.params.id, function (err) {
+        user.editProfile(data, req.params.id, function(err) {
             if (err) {
                 return res.status(500).json({
                     "message": "Error"
@@ -162,8 +162,8 @@ routes.post('/edit/:id', function (req, res) {
     });
 });
 
-routes.get('/countFollowing/:id', function (req, res) {
-    user.followingCount(req.params.id, function (err, rows) {
+routes.get('/countFollowing/:id', function(req, res) {
+    user.followingCount(req.params.id, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -173,8 +173,8 @@ routes.get('/countFollowing/:id', function (req, res) {
     });
 });
 
-routes.get('/countFollowers/:id', function (req, res) {
-    user.followersCount(req.params.id, function (err, rows) {
+routes.get('/countFollowers/:id', function(req, res) {
+    user.followersCount(req.params.id, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -184,12 +184,12 @@ routes.get('/countFollowers/:id', function (req, res) {
     });
 });
 
-routes.post('/removeFollow', function (req, res) {
+routes.post('/removeFollow', function(req, res) {
     var data = {
         "user_id": req.body.user_id,
         "user_friend_id": req.body.user_friend_id
     };
-    user.removeFollow(data.user_id, data.user_friend_id, function (err, rows) {
+    user.removeFollow(data.user_id, data.user_friend_id, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -206,13 +206,13 @@ routes.post('/removeFollow', function (req, res) {
     });
 });
 
-routes.post('/addfollow', function (req, res) {
+routes.post('/addfollow', function(req, res) {
     var data = {
         "user_id": req.body.user_id,
         "user_friend_id": req.body.user_friend_id
     };
     console.log(data);
-    user.findFollow(data.user_id, data.user_friend_id, function (err, rows) {
+    user.findFollow(data.user_id, data.user_friend_id, function(err, rows) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -224,7 +224,7 @@ routes.post('/addfollow', function (req, res) {
             });
         }
     });
-    user.addFollow(data, function (err) {
+    user.addFollow(data, function(err) {
         if (err) {
             return res.status(500).json({
                 "message": "Error"
@@ -237,12 +237,12 @@ routes.post('/addfollow', function (req, res) {
 });
 
 //Initial Route
-routes.get('/', function (req, res) {
+routes.get('/', function(req, res) {
     res.send("Welcome to API FOTR!");
 });
 app.use('/api', routes);
 
 //Server start
-var server = app.listen(8080, function () {
+var server = app.listen(8080, function() {
     console.log("FOTR API connected at port: %s", server.address().port);
 });
