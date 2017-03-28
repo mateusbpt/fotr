@@ -6,6 +6,10 @@
                  .state('login', {
                      url: '/login',
                      views: {
+                         'navbar@': {
+                             templateUrl: 'views/navbar_form.html',
+                             controller: 'LoginController'
+                         },
                          'content@': {
                              templateUrl: 'views/login.html',
                              controller: 'LoginController'

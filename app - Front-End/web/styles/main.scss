@@ -1,23 +1,86 @@
 @import "../bower_components/bootstrap/scss/bootstrap.scss";
 @import "../bower_components/font-awesome/scss/font-awesome.scss";
-header {
-    position: relative;
+$color: #222;
+$color-two: #444;
+$color-font: rgb(249, 205, 32);
+html,
+body {
+    height: 100%;
     width: 100%;
-    min-height: auto;
-    background-position: center;
-    background-image: url('../images/bakground2.jpg');
-    text-align: center;
-    color: whitesmoke;
+}
+
+section {
+    padding: 100px 0;
 }
 
 .header-content {
     position: relative;
     text-align: center;
-    padding: 100px 15px 100px;
+    padding: 150px 50px;
     width: 100%;
     background-size: cover;
+    p {
+        font-weight: 300;
+        color: fade(white, 70%);
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-shadow: black 0.1em 0.1em 0.2em;
+    }
+}
+
+.btn-primary {
+    @include button-variant(#fff, $color, $color);
+}
+
+.btn-lotr {
+    @include button-variant($color-font, $color-two, $color-two);
+}
+
+.btn-outline-primary {
+    @include button-outline-variant($color);
+}
+
+.configurations {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.index {
+    @extend .configurations;
+    background-image: url('../images/background3.jpg');
+    background-position: top center;
+}
+
+.login {
+    @extend .configurations;
+    background-image: url('../images/bakground2.jpg');
+    background-position: center;
+}
+
+.cadastro {
+    @extend .configurations;
+    background-image: url('../images/bakground2.jpg');
+    background-position: center;
 }
 
 .image-logo {
-    width: 70%;
+    width: 60%;
+    margin-left: 80px;
+}
+
+.btn {
+    font-weight: 300;
+    color: fade(white, 70%);
+}
+
+.form-control {
+    font-weight: 300;
+    color: fade(white, 70%);
+}
+
+.nav-item {
+    padding-left: 5px;
 }

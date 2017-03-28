@@ -6,6 +6,10 @@
                  .state('register', {
                      url: '/register',
                      views: {
+                         'navbar@': {
+                             templateUrl: 'views/navbar_form.html',
+                             controller: 'RegisterController'
+                         },
                          'content@': {
                              templateUrl: 'views/register.html',
                              controller: 'RegisterController'

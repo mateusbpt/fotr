@@ -1,15 +1,26 @@
-<div class="container">
-    <form name="form">
-        <div class="form-group">
-            <label>Email: </label>
-            <input type="email" class="form-control" ng-model="user.email" name="email" placeholder="Digite o e-mail" required>
-            <small ng-show="errors" class="form-text text-muted text-danger">Email ou senha incorretos, verifique!</small>
+<header class="login">
+    <div class="header-content">
+        <img class="image-logo" src="../images/logo.png" />
+        <p>Faça seu login:</p>
+        <div class="container-fluid margin-login">
+            <div class="row justify-content-center">
+                <div class="col col-md-6">
+                    <form method="POST" accept-charset="UTF-8" role="form">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon btn-primary"><i class="fa fa-user"></i></span>
+                                <input class="form-control input-lg" placeholder="Informe o Usuário" name="text" ng-model="username" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon btn-primary"><i class="fa fa-lock"></i></span>
+                                <input class="form-control input-lg" placeholder="Informe a Senha" ng-model="password" name="password" type="password">
+                            </div>
+                        </div>
+                        <input class="btn btn-primary btn-xl" type="submit" value="Entrar">
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Senha: </label>
-            <input type="password" class="form-control" ng-model="user.password" name="password" placeholder="Digite a senha" required>
-            <small ng-show="errors" class="form-text text-muted text-danger">Email ou senha incorretos, verifique!</small>
-        </div>
-        <button ng-click="login(form)" type="submit" class="btn btn-outline-primary">Entrar</button>
-    </form>
-</div>
+</header>
